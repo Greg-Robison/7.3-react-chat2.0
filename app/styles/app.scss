@@ -12,14 +12,21 @@ $icon-font-path: '../../node_modules/bootstrap-sass/assets/fonts/bootstrap/';
   box-sizing: border-box;
 }
 body{
+
   background-image: url('../images/image-1.jpg');
   background-repeat: no-repeat;
   background-size: cover;
   color: blue;
+  padding: 20px;
 
 }
 img {
   max-width: 100%;
+}
+.hello{
+  text-align: center;
+  font-weight: bolder;
+  color: white;
 }
 .heading{
   text-align: center;

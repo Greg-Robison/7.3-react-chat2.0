@@ -13,15 +13,21 @@ var Router = Backbone.Router.extend({
   },
   index: function(){
     console.log('index was run');
+    if(!this.username){
+      this.navigate(
+        "username", {trigger: true}
+      );
+      return;
+    }
     ReactDOM.render(
-      React.createElement(Layout),
+      React.createElement(Layout, {router: this}),
       document.getElementById('app')
     );
 
   },
   signIn: function(){
     ReactDOM.render(
-      React.createElement(Login),
+      React.createElement(Login, {router: this}),
       document.getElementById('app')
     );
   },

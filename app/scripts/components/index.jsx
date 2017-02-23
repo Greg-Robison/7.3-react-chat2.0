@@ -24,7 +24,7 @@ var Layout = React.createClass({
      return (
        <div className="container">
            <div className="row">
-              <Login />
+              <h1 className="hello">Hello {this.props.router.username}</h1>
            </div>
            <div className="row">
                <div className="col-md-12">
@@ -59,7 +59,7 @@ var ChatInput = React.createClass({
       <div className="col-md-6">
           <label htmlFor=""><h2 className="sub-heading-left">Input Your Cool Chat!!</h2></label>
           <form onSubmit={this.addChat} className="form-inline" action="index.html" method="post">
-              <input  className="btn btn-danger" type="submit" name="" value="Send" />
+              <input  className="btn btn-danger" type="submit" name="" value="Send Your Cool Chat" />
               <textarea onChange={this.handleChatChange} className="form-control" rows="3"></textarea>
           </form>
       </div>
@@ -87,12 +87,26 @@ var ChatOutput = React.createClass({
   }
 });
 var Login = React.createClass({
+  getInitialState: function(){
+    return {
+      'username': ''
+    }
+  },
+  handleUsernameChange: function(event){
+    this.setState({username: event.target.value});
+  },
+  handleLogin: function(event){
+    event.preventDefault();
+    var router = this.props.router;
+    router.username = this.state.username;
+    router.navigate('', {trigger: true});
+  },
   render: function(){
     return(
       <div className="col-md-12">
-          <form className="login form-inline" action="index.html" method="post">
+          <form onSubmit={this.handleLogin}className="login form-inline" action="index.html" method="post">
 
-              <input type="text" className="form-control" placeholder="Username" />
+              <input onChange={this.handleUsernameChange}type="text" className="form-control" placeholder="Username" />
               <button type="submit" className="btn btn-danger">Sign In</button>
           </form>
       </div>

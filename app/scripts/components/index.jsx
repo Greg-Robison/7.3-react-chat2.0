@@ -67,6 +67,15 @@ var ChatInput = React.createClass({
   }
 });
 var ChatOutput = React.createClass({
+  getInitialState: function(){
+    return {
+    'chat': ''
+    }
+  },
+  handleChatChange: function(event){
+    this.setState({chat: event.target.value});
+  },
+  
   render: function(){
     var items = this.props.chatItems.map(function(chat){
       return(

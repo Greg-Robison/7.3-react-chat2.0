@@ -16,9 +16,9 @@ var Layout = React.createClass({
     };
   },
   addChat: function(chatItem){
-    var chatList = this.state.chatList;
+    var chatList = this.state.chatCollection;
     chatList.create(chatItem);
-    this.setState({chatList: chatList});
+    this.setState({chatCollection: chatList});
   },
    render: function(){
      return (
@@ -75,11 +75,11 @@ var ChatOutput = React.createClass({
   handleChatChange: function(event){
     this.setState({chat: event.target.value});
   },
-  
+
   render: function(){
     var items = this.props.chatItems.map(function(chat){
       return(
-        <textarea key={chat.cid} className="form-control" rows="3"></textarea>
+        <li key={chat.cid} className="form-control" rows="3">{chat.get('title')}</li>
       );
     });
 
@@ -88,7 +88,9 @@ var ChatOutput = React.createClass({
           <form>
               <div className="form-group">
                   <label htmlFor=""><h2>Cool Chats!</h2></label>
-                    {items}
+                    <ul>
+                      {items}
+                    </ul>
               </div>
          </form>
       </div>
